@@ -1,15 +1,13 @@
+ruby '2.3.3'
+
 source 'https://rubygems.org'
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
-
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -24,9 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
+# gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -35,14 +33,39 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'activeadmin', github: 'activeadmin'
+# TODO: Remove the inherited_resources line when activeadmin 1.0.0 is released (https://github.com/activeadmin/activeadmin#rails-5)
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+
+gem 'devise'
+gem 'simple_token_authentication'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'stripe'
+gem 'paperclip', "~> 5.1.0"
+gem 'aws-sdk'
+gem 'twilio-ruby'
+gem 'activerecord-postgis-adapter'
+gem 'geokit'
+
+gem 'lograge'
+gem 'draper', "3.0.0.pre1"
+
+gem 'envforcer'
+gem 'newrelic_rpm'
+gem 'bugsnag'
+gem 'resque'
+gem 'httparty', '~> 0.16.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry-byebug'
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
